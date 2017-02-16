@@ -11,9 +11,11 @@ int verifyInput(int deposit, int days) {
 
 int main() {
 	int deposit, days;
-	cout << "Введите размер вклада: ";
+	cout << "Введите размер вклада (минимум 10000): ";
 	cin >> deposit;
-	cout << "Введите срок вклада: ";
+	cout << "Введите срок вклада (до 365 дней): ";
 	cin >> days;
+	
+
 	return 0;
 }
