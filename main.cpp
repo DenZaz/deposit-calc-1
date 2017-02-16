@@ -53,6 +53,8 @@ int main() {
 		return 3;
 	}
 	
+	profit = (days / 365.0) * deposit * calculatePercent(deposit, days);
+	cout << (profit < 0 ? "Штраф: " : "Доход: ") << profit << ". Сумма вклада: " << profit + deposit << endl;
 
 	return 0;
 }
