@@ -2,6 +2,29 @@
 
 using namespace std;
 
+float calculatePercent(int deposit, int days) {
+	if(deposit < 100000) {
+		if(days <= 30) 
+			return -0.1f;
+		else if(days <= 120)
+			return 0.02f;
+		else if(days <= 240)
+			return 0.06f;
+		else
+			return 0.12f;
+	}
+	else {
+		if(days <= 30) 
+			return -0.1f;
+		else if(days <= 120)
+			return 0.03f;
+		else if(days <= 240)
+			return 0.08f;
+		else
+			return 0.15f;
+	}
+}
+
 int verifyInput(int deposit, int days) {
 	if(days < 0) return 1;
 	if(days > 365) return 2;
@@ -10,7 +33,8 @@ int verifyInput(int deposit, int days) {
 }
 
 int main() {
-	int deposit, days;
+	int deposit, days, profit;
+	
 	cout << "Введите размер вклада (минимум 10000): ";
 	cin >> deposit;
 	cout << "Введите срок вклада (не более 365 дней): ";
