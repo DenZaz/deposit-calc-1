@@ -2,27 +2,30 @@
 
 using namespace std;
 
-float calculatePercent(int deposit, int days) {
+int calculateProfit(int deposit, int days) {
+	float percent;
 	if(deposit < 100000) {
 		if(days <= 30) 
-			return -0.1f;
+			percent = -0.1f;
 		else if(days <= 120)
-			return 0.02f;
+			percent = 0.02f;
 		else if(days <= 240)
-			return 0.06f;
+			percent = 0.06f;
 		else
-			return 0.12f;
+			percent = 0.12f;
 	}
 	else {
 		if(days <= 30) 
-			return -0.1f;
+			percent = -0.1f;
 		else if(days <= 120)
-			return 0.03f;
+			percent = 0.03f;
 		else if(days <= 240)
-			return 0.08f;
+			percent = 0.08f;
 		else
-			return 0.15f;
+			percent = 0.15f;
 	}
+	
+	return (days / 365.0) * deposit * percent;
 }
 
 int verifyDays(int days) {
@@ -57,7 +60,7 @@ int main() {
 		return 1;
 	}
 	
-	profit = (days / 365.0) * deposit * calculatePercent(deposit, days);
+	profit =  calculateProfit(deposit, days);
 	cout << (profit < 0 ? "Штраф: " : "Доход: ") << profit << ". Сумма вклада: " << profit + deposit << endl;
 
 	return 0;
