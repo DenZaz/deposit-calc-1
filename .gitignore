@@ -1,2 +1,2 @@
-*.o
-deposit-calc
+build/*
+bin/*
