@@ -3,7 +3,10 @@ SRC=src/main.cpp src/deposit.cpp
 OBJ=build/main.o build/deposit.o
 EXE=bin/deposit-calc
 
-all: $(EXE) $(SRC)
+all: build/ bin/ $(EXE) $(SRC)
+
+build/ bin/:
+	mkdir $@
 
 $(EXE): $(OBJ)
 	$(CF) $(OBJ) -o $@
