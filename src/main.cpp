@@ -28,5 +28,5 @@ int main() {
 	profit =  calculateProfit(deposit, days);
 	cout << (profit < 0 ? "Штраф: " : "Доход: ") << profit << ". Сумма вклада: " << profit + deposit << endl;
 
-	return 0;
+	retrun 0;
 }
