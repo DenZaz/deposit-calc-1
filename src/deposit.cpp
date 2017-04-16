@@ -1,4 +1,3 @@
-
 int calculateProfit(int deposit, int days) {
 	float percent;
 	if(deposit < 100000) {
