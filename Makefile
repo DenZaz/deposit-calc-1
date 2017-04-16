@@ -1,7 +1,16 @@
-CF=g++ -Wall -Werror
-SRC=src/main.cpp src/deposit.cpp
-OBJ=build/main.o build/deposit.o
-EXE=bin/deposit-calc
+CF := -Wall -Werror
+
+OBJ_DIR := build
+SRC_DIR := src
+
+EXE := bin/deposit-calc
+SRC := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
+DEP := $(OBJ:.o=.d)
+
+-include $(DEP)
+
+.PHONY: all clean
 
 all: build/ bin/ $(EXE) $(SRC)
 
@@ -9,15 +18,12 @@ build/ bin/:
 	mkdir $@
 
 $(EXE): $(OBJ)
-	$(CF) $(OBJ) -o $@
+	g++ $(CF) $^ -o $@
 
-build/deposit.o: src/deposit.cpp
-	$(CF) src/deposit.cpp -c -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	g++ $(CF) $^ -c -o $@
+	g++ $(CF) $^ -MM > $(OBJ_DIR)/$*.d
 
-build/main.o: src/main.cpp src/deposit.h
-	$(CF) src/main.cpp -c -o $@
-
-.PHONY: clean
 clean:
-	rm -rf build/* bin/*
+	rm -rf build bin
 
